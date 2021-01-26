@@ -1,7 +1,277 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@using System.Threading
+@using System.IO
 
-Welcome to your new app.
+@inject HttpClient Http
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<style id="applicationStylesheet" type="text/css">
+	
+	#hoodieman {
+		opacity: 0.41;
+		mix-blend-mode: screen;
+		position: absolute;
+		width: 1920px;
+		height: 2878px;
+		left: 0px;
+		top: 6px;
+		overflow: visible;
+	}
+
+	#John_Smith_hacked_the_mainfram {
+		left: 17px;
+		top: 29px;
+		position: absolute;
+		overflow: visible;
+		width: 832px;
+		height: 91px;
+		text-align: left;
+		font-family: Cascadia Code;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 30px;
+		color: rgba(3,169,244,1);
+		text-decoration: underline;
+	}
+	#Doge {
+        clear: both;
+        position: relative;
+        height: 200px;
+        margin-top: -200px;
+
+		/* position: absolute;*/
+		width: 651px;
+		height: 414px;
+		left: 1193px;
+		top: 66px;
+		overflow: visible;
+	}
+	#bub {
+		position: absolute;
+		width: 372px;
+		height: 279px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#It_looks_like_you_have_been__p {
+		transform: translate(-1111.696px, -56.276px) matrix(1,0,0,1,1191.3275,129.446) rotate(1deg);
+		transform-origin: center;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 250px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 21px;
+		color: rgba(0,0,0,1);
+	}
+	#doge {
+		mix-blend-mode: lighten;
+		position: absolute;
+		width: 364px;
+		height: 338px;
+		left: 287px;
+		top: 76px;
+		overflow: visible;
+	}
+
+    #threatreportmain {
+        height: 1080px;
+        width: 100%;
+        background-image: url("img/hoodieman.png");
+        background-color: #91232B;
+    }
+
+    #threatTitle {
+        left: 0px;
+        top: 0px;
+        position: relative;
+        overflow: visible;
+        width: 532px;
+        white-space: nowrap;
+        text-align: left;
+        font-family: Teko;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 103px;
+        color: rgba(255,255,255,1);
+    }
+
+
+</style>
+
+
+<div class="jumbotron" hidden="@showJsonUpload">
+  <h1 class="display-4">Advanced Threat Visualization!</h1>
+  <p class="lead">Upload your generic threat json for the ULTIMATE in threat visualization.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" role="button"><InputFile OnChange="@OnInputFileChange" multiple /></a>
+  </p>
+</div>
+
+
+@if (myThreat == null)
+{
+    
+}
+else
+{
+    <div  id ="threatreportmain" class="container-fluid">
+        
+            <div id = "threatTitle">THREAT DETECTED</div>
+
+            <div class="d-flex justify-content-center">
+
+                <div class="card text-white bg-danger mb-3 text-center" style="max-width: 30rem;">
+                    <h5 class="card-header">Threat Detected</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">@myThreat.Summary</h5>
+                        <p class="card-text">@myThreat.Description</p>
+                    </div>
+                </div>
+
+
+            </div>
+
+                <br><br>
+      
+                <div class="d-flex justify-content-around">
+
+              
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">THREAT RISK</h5>
+                            <p class="card-text">@myThreat.Severity</p>
+                        </div>
+                    </div>
+
+                     <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Threat Host</h5>
+                            <p class="card-text">@myThreat.Host</p>
+                        </div>
+                    </div>
+
+                     <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Threat Client</h5>
+                            <p class="card-text">@myThreat.Client</p>
+                        </div>
+                    </div>
+          
+
+                </div>
+     
+                 <br><br>
+             
+                    <table class="table table-dark">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>mdo</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>fat</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>twitter</td>
+                        </tr>
+                    </tbody>
+                    </table>
+         
+
+            <div id="Doge">
+                <img id="bub" src="img/bub.png">
+                
+                <div id="It_looks_like_you_have_been__p">
+                    <span>It looks like you have been <br/>pwned, would you like to <br/>respond to this threat?</span>
+                </div>
+                <img id="doge" src="img/doge.png">
+            </div>
+
+    </div>
+
+}
+
+
+
+@code {
+    private Threat myThreat;
+    private bool showJsonUpload = false;
+
+    private CancellationTokenSource cancelation;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        cancelation = new CancellationTokenSource();
+
+    }
+
+    public class Threat
+    {
+
+        public string Summary { get; set; }
+
+        public string Severity { get; set; }
+
+        public string Evidence { get; set; }
+
+        public string Description { get; set; }
+
+        public string Client { get; set; }
+
+        public string Host { get; set; }
+
+
+    }
+
+
+    private IList<string> threatDataUrls = new List<string>();
+
+
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs eventArgs)
+    {
+
+        var fileReadStream = eventArgs.File.OpenReadStream();
+
+        byte[] result;
+
+        result = new byte[fileReadStream.Length];
+        await fileReadStream.ReadAsync(result, 0, (int)fileReadStream.Length);
+
+        //convert byte array to httpcontent to use HttpContentJsonExtensions
+        ByteArrayContent byteContent = new ByteArrayContent(result);
+
+        myThreat = await System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<Threat>(byteContent);
+
+        showJsonUpload = true;
+    }
+
+
+
+}

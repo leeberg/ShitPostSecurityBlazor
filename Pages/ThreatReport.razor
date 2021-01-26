@@ -1,0 +1,293 @@
+@page "/threatreport"
+@inject HttpClient Http
+
+<style id="applicationStylesheet" type="text/css">
+	.mediaViewInfo {
+		--web-view-name: Web 1920 – 1;
+		--web-view-id: Web_1920__1;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	:root {
+		--web-view-ids: Web_1920__1;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		border: none;
+	}
+	#Web_1920__1 {
+		position: absolute;
+		width: 1920px;
+		height: 1080px;
+		background-color: rgba(255,255,255,1);
+		overflow: hidden;
+		--web-view-name: Web 1920 – 1;
+		--web-view-id: Web_1920__1;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	#Rectangle_1 {
+		fill: rgba(145,35,43,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_1 {
+		position: absolute;
+		overflow: visible;
+		width: 1920px;
+		height: 2287px;
+		left: 0px;
+		top: 0px;
+	}
+	#Image_90 {
+		opacity: 0.41;
+		mix-blend-mode: screen;
+		position: absolute;
+		width: 1920px;
+		height: 2878px;
+		left: 0px;
+		top: 6px;
+		overflow: visible;
+	}
+	#Threat_Zone {
+		position: absolute;
+		width: 1832px;
+		height: 474px;
+		left: 59px;
+		top: 6px;
+		overflow: visible;
+	}
+	#Threat_Top {
+		position: absolute;
+		width: 531px;
+		height: 148px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#THREAT_DETECTED {
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 532px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Teko;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 103px;
+		color: rgba(255,255,255,1);
+	}
+	#Threat_Summary {
+		position: absolute;
+		width: 884px;
+		height: 187px;
+		left: 24px;
+		top: 287px;
+		overflow: visible;
+	}
+	#Rectangle_1627 {
+		fill: transparent;
+	}
+	.Rectangle_1627 {
+		position: absolute;
+		overflow: visible;
+		width: 884px;
+		height: 187px;
+		left: 0px;
+		top: 0px;
+	}
+	#Threat_Risk {
+		position: absolute;
+		width: 848px;
+		height: 128px;
+		left: 984px;
+		top: 156px;
+		overflow: visible;
+	}
+	#Rectangle_1642 {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_1642 {
+		position: absolute;
+		overflow: visible;
+		width: 848px;
+		height: 128px;
+		left: 0px;
+		top: 0px;
+	}
+	#ULTIMATE {
+		left: 595px;
+		top: 40px;
+		position: absolute;
+		overflow: hidden;
+		width: 237px;
+		height: 49px;
+		text-align: center;
+		font-family: Cascadia Code;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 43px;
+		color: rgba(255,0,0,1);
+	}
+	#Risk_Factor {
+		left: 42px;
+		top: 35px;
+		position: absolute;
+		overflow: visible;
+		width: 323px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Cascadia Code;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 50px;
+		color: rgba(0,0,0,1);
+	}
+	#Threat_Summary_r {
+		position: absolute;
+		width: 848px;
+		height: 128px;
+		left: 0px;
+		top: 159px;
+		overflow: visible;
+	}
+	#Rectangle_1627_s {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(0,0,0,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_1627_s {
+		position: absolute;
+		overflow: visible;
+		width: 848px;
+		height: 128px;
+		left: 0px;
+		top: 0px;
+	}
+	#John_Smith_hacked_the_mainfram {
+		left: 17px;
+		top: 29px;
+		position: absolute;
+		overflow: visible;
+		width: 832px;
+		height: 91px;
+		text-align: left;
+		font-family: Cascadia Code;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 30px;
+		color: rgba(3,169,244,1);
+		text-decoration: underline;
+	}
+	#Doge {
+		position: absolute;
+		width: 651px;
+		height: 414px;
+		left: 1193px;
+		top: 666px;
+		overflow: visible;
+	}
+	#bub {
+		position: absolute;
+		width: 372px;
+		height: 279px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#It_looks_like_you_have_been__p {
+		transform: translate(-1111.696px, -56.276px) matrix(1,0,0,1,1191.3275,129.446) rotate(1deg);
+		transform-origin: center;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 250px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 21px;
+		color: rgba(0,0,0,1);
+	}
+	#Image_91 {
+		mix-blend-mode: lighten;
+		position: absolute;
+		width: 364px;
+		height: 338px;
+		left: 287px;
+		top: 76px;
+		overflow: visible;
+	}
+</style>
+
+<div id="Web_1920__1">
+	<svg class="Rectangle_1">
+		<rect id="Rectangle_1" rx="0" ry="0" x="0" y="0" width="1920" height="2287">
+		</rect>
+	</svg>
+	<img id="Image_90" src="img/Image_90.png" srcset="Image_90.png 1x, Image_90@2x.png 2x">
+		
+	<div id="Threat_Zone">
+		<div id="Threat_Top">
+			<div id="THREAT_DETECTED">
+				<span>THREAT DETECTED</span>
+			</div>
+		</div>
+		<div id="Threat_Summary">
+			<svg class="Rectangle_1627">
+				<rect id="Rectangle_1627" rx="0" ry="0" x="0" y="0" width="884" height="187">
+				</rect>
+			</svg>
+		</div>
+		<div id="Threat_Risk">
+			<svg class="Rectangle_1642">
+				<rect id="Rectangle_1642" rx="0" ry="0" x="0" y="0" width="848" height="128">
+				</rect>
+			</svg>
+			<div id="ULTIMATE">
+				<span>ULTIMATE</span>
+			</div>
+			<div id="Risk_Factor">
+				<span>Risk Factor</span>
+			</div>
+		</div>
+		<div id="Threat_Summary_r">
+			<svg class="Rectangle_1627_s">
+				<rect id="Rectangle_1627_s" rx="0" ry="0" x="0" y="0" width="848" height="128">
+				</rect>
+			</svg>
+			<div id="John_Smith_hacked_the_mainfram">
+				<span>John Smith</span><span style="color:rgba(0,0,0,1);"> hacked the mainframe from</span><span style="color:rgba(0,0,0,1);"></span><span style="color:rgba(0,0,0,1);"> 3:20PM to<br/>4:25PM 01/18/2021 from 192.168.100.99</span>
+			</div>
+		</div>
+	</div>
+	<div id="Doge">
+		<img id="bub" src="img/bub.png" srcset="bub.png 1x, bub@2x.png 2x">
+			
+		<div id="It_looks_like_you_have_been__p">
+			<span>It looks like you have been <br/>pwned, would you like to <br/>respond to this threat?</span>
+		</div>
+		<img id="Image_91" src="img/Image_91.png" srcset="Image_91.png 1x, Image_91@2x.png 2x">
+			
+	</div>
+</div>
